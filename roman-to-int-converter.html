@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Roman to Int converter</title>
+</head>
+<body>
+    <script language="javascript">
+        function romanToInteger(s) {
+            console.log(s);
+            
+            let l = s.length;
+            let i = 0;
+
+            let number = 0;
+
+            while(i < l) {
+                let t = s[i];
+
+                if(i < (l - 1)) {
+                    // can be negative, check next character
+                    let nextChar = s[i + 1];
+                    let tempNum = getRomanCharValue(t, nextChar);
+                    let isSpecialChar = isSpecialRomanChar(t, nextChar);
+
+                    if(isSpecialChar) {
+                        // number constists of 2 chars,
+                        // ignore next char
+                        i++;
+                    }
+
+                    number += tempNum;
+
+                } else {
+                    // can only be positive
+                    number += getRomanCharValue(t, '');
+                }
+
+                // console.log(t, number);
+                i++;
+            }
+
+            console.log(number);
+            return number;
+        }
+
+        function getRomanCharValue(character, nextChar) {
+            let value = 0;
+            switch(character) {
+                case 'I':
+                    value = 1;
+                    break;
+                case 'V':
+                    value = 5;
+                    break;
+                case 'X':
+                    value = 10;
+                    break;
+                case 'L':
+                    value = 50;
+                    break;
+                case 'C':
+                    value = 100;
+                    break;
+                case 'D':
+                    value = 500;
+                    break;
+                case 'M':
+                    value = 1000;
+                    break;
+            }
+
+            if((character == 'I') && (nextChar == 'V')) {
+                value = 4;
+            } else if((character == 'I') && (nextChar == 'X')) {
+                value = 9;
+            } else if((character == 'X') && (nextChar == 'L')) {
+                value = 40;
+            } else if((character == 'X') && (nextChar == 'C')) {
+                value = 90;
+            } else if((character == 'C') && (nextChar == 'D')) {
+                value = 400;
+            } else if((character == 'C') && (nextChar == 'M')) {
+                value = 900;
+            }
+
+            return value;
+        }
+
+
+        function isSpecialRomanChar(character, nextChar) {
+            let isSpecialChar = false;
+            if((character == 'I') && (nextChar == 'V')) {
+                isSpecialChar = true;
+            } else if((character == 'I') && (nextChar == 'X')) {
+                isSpecialChar = true;
+            } else if((character == 'X') && (nextChar == 'L')) {
+                isSpecialChar = true;
+            } else if((character == 'X') && (nextChar == 'C')) {
+                isSpecialChar = true;
+            } else if((character == 'C') && (nextChar == 'D')) {
+                isSpecialChar = true;
+            } else if((character == 'C') && (nextChar == 'M')) {
+                isSpecialChar = true;
+            }
+
+            return isSpecialChar;
+        }
+
+        romanToInteger("III");
+        romanToInteger("LVIII");
+        romanToInteger("MCMXCIV");
+    </script>
+</body>
+</html>
