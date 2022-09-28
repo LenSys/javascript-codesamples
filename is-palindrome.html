@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Is Palindrome?</title>
+</head>
+<body>
+    <script language="javascript">
+        var isPalindrome = function(x) {
+            var text = x.toString();
+            
+            var text2 = text.split("").reverse().join("");
+            
+            if( text == text2 ) {
+                return true;
+            } else {
+                return false;
+            }
+        };
+
+        console.log(isPalindrome(121));
+        console.log(isPalindrome(-121));
+        console.log(isPalindrome(10));
+    </script>
+</body>
+</html>
