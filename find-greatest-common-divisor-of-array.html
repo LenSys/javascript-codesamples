@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Find Greatest Common Divisor of Array</title>
+</head>
+<body>
+    <script language="javascript">
+        /*
+        Find Greatest Common Divisor of Array
+
+        Given an integer array nums, return the greatest common divisor of the 
+        smallest number and largest number in nums.
+
+        The greatest common divisor of two numbers is the largest positive 
+        integer that evenly divides both numbers.
+
+        Input: nums = [2,5,6,9,10]
+        Output: 2
+        Explanation:
+                     The smallest number in nums is 2.
+                     The largest number in nums is 10.
+                     The greatest common divisor of 2 and 10 is 2.
+        
+        Input: nums = [7,5,6,8,3]
+        Output: 1
+        Explanation:
+                     The smallest number in nums is 3.
+                     The largest number in nums is 8.
+                     The greatest common divisor of 3 and 8 is 1.
+        
+        Input: nums = [3,3]
+        Output: 3
+        Explanation:
+                     The smallest number in nums is 3.
+                     The largest number in nums is 3.
+                     The greatest common divisor of 3 and 3 is 3.
+        */
+        var findGCD = function(nums) {
+            let smallestNum = 1001;
+            let biggestNum = 0;
+            let greatestCommonDivider = 0;
+            
+            for(let i = 0; i < nums.length; i++) {
+                let num = nums[i];
+                
+                if(num < smallestNum) {
+                    smallestNum = num;
+                }
+                
+                if(num > biggestNum) {
+                    biggestNum = num;
+                }
+            }
+            
+            console.log("smallestNum", smallestNum);
+            console.log("biggestNum", biggestNum);
+            
+            // search for greatest common divisor
+            for(let i = 1; i <= smallestNum; i++) {
+                // check if the current divisor is a common divisor
+                // for the smallest and biggest num
+                if((smallestNum % i == 0) && (biggestNum % i == 0)) {
+                    greatestCommonDivider = i;
+                }
+            }
+            
+            
+            return greatestCommonDivider;
+        };
+
+
+        // Output: 2
+        console.log(findGCD([2,5,6,9,10]));
+
+        // Output: 1
+        console.log(findGCD([7,5,6,8,3]));
+
+        // Output: 3
+        console.log(findGCD([3,3]));
+    </script>
+</body>
+</html>
