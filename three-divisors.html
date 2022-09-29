@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Three Divisors</title>
+</head>
+<body>
+    <script language="javascript">
+        /*
+        Three Divisors
+
+        Given an integer n, return true if n has exactly three positive divisors. 
+        Otherwise, return false.
+
+        An integer m is a divisor of n if there exists an integer k such that 
+        n = k * m.
+
+        Input: n = 2
+        Output: false
+        Explantion: 2 has only two divisors: 1 and 2.
+
+        Input: n = 4
+        Output: true
+        Explantion: 4 has three divisors: 1, 2, and 4.
+        */
+        var isThree = function(n) {
+    
+            let countDivisors = 0;
+            
+            for(let i = 1; i <= n; i++) {
+                // check if current number is a divisor for n
+                if(n % i == 0) {
+                    countDivisors++;
+                }
+            }
+            
+            return (countDivisors === 3);
+            
+        };
+
+        // Output: false
+        console.log(isThree(2));
+        
+        // Output: true
+        console.log(isThree(4));
+
+    </script>
+</body>
+</html>
