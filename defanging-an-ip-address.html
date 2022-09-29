@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Defanging an IP Address</title>
+</head>
+<body>
+    <script language="javascript">
+        /*
+        Defanging an IP Address
+
+        Given a valid (IPv4) IP address, return a defanged version of 
+        that IP address.
+
+        A defanged IP address replaces every period "." with "[.]".
+
+        Input: address = "1.1.1.1"
+        Output: "1[.]1[.]1[.]1"
+
+        Input: address = "255.100.50.0"
+        Output: "255[.]100[.]50[.]0"
+        */
+        var defangIPaddr = function(address) {
+            let splitAddress = address.split('.');
+            
+            let defIPAddress = splitAddress[0] + "[.]" + splitAddress[1] + "[.]" + 
+                splitAddress[2] + "[.]" + splitAddress[3];
+            
+            return defIPAddress;
+        };
+
+
+        var defangIPaddr2 = function(address) {
+            let defIPAddress = address.replace(/\./g, '[.]');
+            
+            return defIPAddress;
+        };
+
+        // Output: 1[.]1[.]1[.]1
+        console.log(defangIPaddr("1.1.1.1"));
+        console.log(defangIPaddr2("1.1.1.1"));
+
+        // Output: 255[.]100[.]50[.]0
+        console.log(defangIPaddr("255.100.50.0"));
+        console.log(defangIPaddr2("255.100.50.0"));
+    </script>
+</body>
+</html>
