@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jewels and Stones</title>
+</head>
+<body>
+    <script language="javascript">
+        /*
+        Jewels and Stones
+
+        You're given strings jewels representing the types of stones that 
+        are jewels, and stones representing the stones you have. 
+        Each character in stones is a type of stone you have. 
+        You want to know how many of the stones you have are also jewels.
+
+        Letters are case sensitive, so "a" is considered a different type 
+        of stone from "A".
+
+        Input: jewels = "aA", stones = "aAAbbbb"
+        Output: 3
+
+        Input: jewels = "z", stones = "ZZ"
+        Output: 0
+        */
+        var numJewelsInStones = function(jewels, stones) {
+    
+            let jewelCount = 0;
+            
+            // iterate through each jewel
+            for(let i = 0; i < jewels.length; i++) {
+                let jewel = jewels[i];
+                
+                // iterate through each stone for the current jewel
+                for(let j = 0; j < stones.length; j++) {
+                    let stone = stones[j];
+                    
+                    // check if current stone is a jewel
+                    if( stone == jewel) {
+                        jewelCount++;
+                    }
+                }
+            }
+            
+            return jewelCount;
+        };
+
+        // Output: 3
+        console.log(numJewelsInStones("aA", "aAAbbbb"));
+
+        // Output: 0
+        console.log(numJewelsInStones("zz", "ZZ"));
+    </script>
+</body>
+</html>
