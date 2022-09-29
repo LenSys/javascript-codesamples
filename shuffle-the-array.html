@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shuffle the Array</title>
+</head>
+<body>
+    <script language="javascript">
+        /*
+        Shuffle the Array
+
+        Given the array nums consisting of 2n elements in the form 
+        [x1,x2,...,xn,y1,y2,...,yn].
+
+        Return the array in the form [x1,y1,x2,y2,...,xn,yn].
+
+        Input: nums = [2,5,1,3,4,7], n = 3
+        Output: [2,3,5,4,1,7] 
+        Explanation: Since x1=2, x2=5, x3=1, y1=3, y2=4, y3=7 then 
+                     the answer is [2,3,5,4,1,7].
+        */
+        var shuffle = function(nums, n) {
+    
+            let shuffledNums = [];
+            for(let i = 0; i < n; i++) {
+                shuffledNums.push(nums[i]);
+                shuffledNums.push(nums[n + i]);
+            }
+            
+            return shuffledNums;
+        };
+
+        // Output: [2,3,5,4,1,7]
+        console.log(shuffle([2,5,1,3,4,7], 3));
+
+        // Output: [1,4,2,3,3,2,4,1]
+        console.log(shuffle([1,2,3,4,4,3,2,1], 4));
+
+        // Output: [1,2,1,2]
+        console.log(shuffle([1,1,2,2], 2));
+    </script>
+</body>
+</html>
