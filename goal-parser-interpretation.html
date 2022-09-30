@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Goal Parser Interpretation</title>
+</head>
+<body>
+    <script language="javascript">
+        /*
+        Goal Parser Interpretation
+
+        You own a Goal Parser that can interpret a string command. 
+        The command consists of an alphabet of "G", "()" and/or "(al)" in 
+        some order. The Goal Parser will interpret "G" as the string "G", "()" 
+        as the string "o", and "(al)" as the string "al". 
+        The interpreted strings are then concatenated in the original order.
+
+        Given the string command, return the Goal Parser's interpretation of 
+        command.
+
+        Input: command = "G()(al)"
+        Output: "Goal"
+        Explanation: The Goal Parser interprets the command as follows:
+                     G -> G
+                     () -> o
+                     (al) -> al
+                     The final concatenated result is "Goal".
+
+        Input: command = "G()()()()(al)"
+        Output: "Gooooal"
+
+        Input: command = "(al)G(al)()()G"
+        Output: "alGalooG"
+        */
+        var interpret = function(command) {
+    
+            let c = '';
+            let i = 0;
+            let output = '';
+            
+            do {
+                c += command[i];
+                // console.log("c", c);
+            
+                if(c == 'G') {
+                    // found command G
+                    output += 'G';
+                    // console.log('C', 'G');
+                    // reset current command
+                    c = '';
+                } else if(c == '()') {
+                    // found command ()
+                    output += 'o';
+                    // console.log('C', 'o');
+                    c = '';
+                } else if(c == '(al)') {
+                    // found command (al)
+                    output += 'al';
+                    // console.log('C', 'al');
+                    c = '';
+                }
+                
+                i++;
+                
+                // console.log("c", c, i);
+                
+            } while(i < command.length);
+            
+            // console.log('---');
+            
+            return output;
+        };
+
+        // Output: Goal
+        console.log(interpret("G()(al)"));
+
+        // Output: Goooal
+        console.log(interpret("G()()()()(al)"));
+
+        // Output: alGalooG
+        console.log(interpret("(al)G(al)()()G"));
+    </script>
+</body>
+</html>
