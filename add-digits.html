@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Digits</title>
+</head>
+<body>
+    <script language="javascript">
+        /*
+        Add Digits
+
+        Given an integer num, repeatedly add all its digits until the result has 
+        only one digit, and return it.
+
+        Input: num = 38
+        Output: 2
+        Explanation: The process is
+        38 --> 3 + 8 --> 11
+        11 --> 1 + 1 --> 2 
+        Since 2 has only one digit, return it.
+
+        Input: num = 0
+        Output: 0
+        */
+        var addDigits = function(num) {
+            let numArr = num.toString().split('');
+            let ansNumber = 0;
+        
+            for(let i = 0; i < numArr.length; i++) {
+                ansNumber += Number(numArr[i]);
+            }
+            
+            while(ansNumber.toString().length > 1) {
+                numArr = ansNumber.toString().split('');
+                ansNumber = 0;
+                for(let i = 0; i < numArr.length; i++) {
+                    ansNumber += Number(numArr[i]);
+                }
+            }
+            
+            return ansNumber;
+        };
+
+        // Output: 2
+        console.log(addDigits(38));
+
+        // Output: 0
+        console.log(addDigits(0));
+    </script>
+</body>
+</html>
