@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reformat Date</title>
+</head>
+<body>
+    <script language="javascript">
+        /*
+        Reformat Date
+
+        Given a date string in the form Day Month Year, where:
+
+        Day is in the set {"1st", "2nd", "3rd", "4th", ..., "30th", "31st"}.
+        Month is in the set {"Jan", "Feb", "Mar", "Apr", "May", "Jun", 
+                             "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"}.
+        Year is in the range [1900, 2100].
+        Convert the date string to the format YYYY-MM-DD, where:
+
+        YYYY denotes the 4 digit year.
+        MM denotes the 2 digit month.
+        DD denotes the 2 digit day.
+
+        Input: date = "20th Oct 2052"
+        Output: "2052-10-20"
+
+        Input: date = "6th Jun 1933"
+        Output: "1933-06-06"
+
+        Input: date = "26th May 1960"
+        Output: "1960-05-26"
+        */
+        var reformatDate = function(date) {
+    
+            let dt = date.split(' ');
+            let day = parseInt(dt[0]).toString();
+            let month = dt[1];
+            let year = dt[2];
+            
+            console.log("day", day);
+            console.log("month", month);
+            console.log("year", year);
+            
+            let monthNumber = 0;
+            
+            let monthArray = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", 
+                              "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]; 
+            
+            monthNumber = (monthArray.indexOf(month) + 1).toString();
+            
+            return year + '-' + monthNumber.padStart(2, '0') + '-' + day.padStart(2, '0');
+        };
+
+        // Output: "2052-10-20"
+        console.log(reformatDate("20th Oct 2052"));
+
+        // Output: "1933-06-06"
+        console.log(reformatDate("6th Jun 1933"));
+
+        // Output: "1960-05-26"
+        console.log(reformatDate("26th May 1960"));
+    </script>
+</body>
+</html>
