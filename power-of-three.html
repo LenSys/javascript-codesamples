@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Power of Three</title>
+</head>
+<body>
+    <script language="javascript">
+        /*
+        Power of Three
+
+        Given an integer n, return true if it is a power of three.
+        Otherwise, return false.
+
+        An integer n is a power of three, if there exists an integer x such 
+        that n == 3^x.
+        */
+        var isPowerOfThree = function(n) {
+            
+            for(let i = 0; i < 32; i++) {
+                let pot = Math.pow(3, i);
+                
+                if(pot === n) {
+                    return true;
+                } else if(pot > n) {
+                    return false;
+                }
+            }
+            
+            return false;
+        };
+
+        // Output: true
+        console.log(isPowerOfThree(27));
+
+        // Output: false
+        console.log(isPowerOfThree(0));
+
+        // Output: false
+        console.log(isPowerOfThree(-1));
+    </script>
+</body>
+</html>
