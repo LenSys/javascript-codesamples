@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Number of Steps to Reduce a Number to Zero</title>
+</head>
+<body>
+    <script language="javascript">
+        /*
+        Number of Steps to Reduce a Number to Zero
+        
+        Given an integer num, return the number of steps to reduce it to zero.
+
+        In one step, if the current number is even, you have to divide it by 
+        2, otherwise, you have to subtract 1 from it.
+
+        Input: num = 14
+        Output: 6
+        Explanation: 
+                     Step 1) 14 is even; divide by 2 and obtain 7. 
+                     Step 2) 7 is odd; subtract 1 and obtain 6.
+                     Step 3) 6 is even; divide by 2 and obtain 3. 
+                     Step 4) 3 is odd; subtract 1 and obtain 2. 
+                     Step 5) 2 is even; divide by 2 and obtain 1. 
+                     Step 6) 1 is odd; subtract 1 and obtain 0.
+
+        Input: num = 8
+        Output: 4
+        Explanation: 
+                     Step 1) 8 is even; divide by 2 and obtain 4. 
+                     Step 2) 4 is even; divide by 2 and obtain 2. 
+                     Step 3) 2 is even; divide by 2 and obtain 1. 
+                     Step 4) 1 is odd; subtract 1 and obtain 0.
+
+        Input: num = 123
+        Output: 12
+        */
+        var numberOfSteps = function(num) {
+    
+            let currentNum = num;
+            let steps = 0;
+            
+            do {
+                let isEven = ((currentNum % 2) == 0);
+                
+                if(currentNum == 0) {
+                    break;
+                }
+                
+                if(isEven) {
+                    // even number, divide by 2
+                    currentNum = currentNum / 2;
+                } else {
+                    // odd number, subtract 1
+                    currentNum--;
+                }
+                
+                steps++;
+            } while(currentNum > 0);
+            
+            
+            return steps;
+        };
+
+        // Output: 6
+        console.log(numberOfSteps(14));
+
+        // Output: 4
+        console.log(numberOfSteps(8));
+
+        // Output: 12
+        console.log(numberOfSteps(123));
+    </script>
+</body>
+</html>
