@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Check if the Sentence Is Pangram</title>
+</head>
+<body>
+    <script language="javascript">
+        /*
+        Check if the Sentence Is Pangram
+
+        A pangram is a sentence where every letter of the English alphabet 
+        appears at least once.
+
+        Given a string sentence containing only lowercase English letters, 
+        return true if sentence is a pangram, or false otherwise.
+
+        Input: sentence = "thequickbrownfoxjumpsoverthelazydog"
+        Output: true
+        Explanation: sentence contains at least one of every letter of the 
+                     English alphabet.
+
+        Input: sentence = "leetcode"
+        Output: false
+        */
+        var checkIfPangram = function(sentence) {
+            let letters = "abcdefghijklmnopqrstuvwxyz";
+            
+            // check if sentence is too short
+            if(sentence.length < letters.length) {
+                return false;
+            }
+            
+            let isPangram = true;
+            
+            // iterate through all letters
+            for(let i = 0; i < letters.length; i++) {
+                let char = letters[i];
+                
+                // check if current letter is in sentence
+                if(sentence.indexOf(char) === -1) {
+                    // letter is not in sentence
+                    isPangram = false;
+                    break;
+                }
+            }
+            
+            return isPangram;
+        };
+
+        // Output: true
+        console.log(checkIfPangram("thequickbrownfoxjumpsoverthelazydog"));
+
+        // Output: false
+        console.log(checkIfPangram("leetcode"));
+    </script>
+</body>
+</html>
