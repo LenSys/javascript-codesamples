@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reverse Vowels of a String</title>
+</head>
+<body>
+    <script language="javascript">
+        /*
+        Reverse Vowels of a String
+
+        Given a string s, reverse only all the vowels in the string and return 
+        it.
+
+        The vowels are 'a', 'e', 'i', 'o', and 'u', and they can appear in both 
+        lower and upper cases, more than once.
+
+        Input: s = "hello"
+        Output: "holle"
+
+        Input: s = "leetcode"
+        Output: "leotcede"
+        */
+        var reverseVowels = function(s) {
+    
+            let vowels = [];
+            let reversedVowelString = '';
+            
+            // find all vowels
+            for(let i = s.length - 1; i >= 0; i--) {
+                let char = s[i];
+                
+                // check if current char is a vowel
+                if('aeiouAEIOU'.indexOf(char) !== -1) {
+                    // save vowel
+                    vowels.push(char);
+                }
+            }
+            
+            
+            let vowelOffset = 0;
+            for(let i = 0; i < s.length; i++) {
+                let char = s[i];
+                
+                // check if current char is a vowel
+                if('aeiouAEIOU'.indexOf(char) !== -1) {
+                    // use reversed vowel
+                    reversedVowelString += vowels[vowelOffset];
+                    vowelOffset++;
+                } else {
+                    // no vowel, output
+                    reversedVowelString += char;
+                }
+            }
+            
+            return reversedVowelString;
+        };
+
+        // Output: "holle"
+        console.log(reverseVowels("hello"));
+
+        // Output: "leotcede"
+        console.log(reverseVowels("leetcode"));
+
+        // Output: "Aa"
+        console.log(reverseVowels("aA"));
+    </script>
+</body>
+</html>
