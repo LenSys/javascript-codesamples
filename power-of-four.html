@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Power of Four</title>
+</head>
+<body>
+    <script language="javascript">
+        /*
+        Power of Four
+
+        Given an integer n, return true if it is a power of four. Otherwise, 
+        return false.
+
+        An integer n is a power of four, if there exists an integer x such 
+        that n == 4^x.
+
+        Input: n = 16
+        Output: true
+
+        Input: n = 5
+        Output: false
+
+        Input: n = 1
+        Output: true
+        */
+        var isPowerOfFour = function(n) {
+            let isPowerOfFour = false;
+            
+            for(let i = 0; i < 32; i++) {
+                let pof = Math.pow(4, i);
+                
+                if(pof === n) {
+                    return true;
+                } else if(pof > n) {
+                    return false;
+                }
+            }
+            
+            return false;
+        };
+
+        // Output: true
+        console.log(isPowerOfFour(16));
+
+        // Output: false
+        console.log(isPowerOfFour(5));
+
+        // Output: true
+        console.log(isPowerOfFour(1));
+    </script>
+</body>
+</html>
