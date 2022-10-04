@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reverse String II</title>
+</head>
+<body>
+    <script language="javascript">
+        /*
+        Reverse String II
+        
+        Given a string s and an integer k, reverse the first k characters for 
+        every 2k characters counting from the start of the string.
+
+        If there are fewer than k characters left, reverse all of them. If 
+        there are less than 2k but greater than or equal to k characters, then 
+        reverse the first k characters and leave the other as original.
+        
+        Input: s = "abcdefg", k = 2
+        Output: "bacdfeg"
+
+        Input: s = "abcd", k = 2
+        Output: "bacd"
+        */
+        var reverseStr = function(s, k) {
+    
+            let reversedString = '';
+            let reverse = true;
+            
+            for(let i = 0; i < s.length; i += k) {
+                
+                if(reverse) {
+                    for(let j = k - 1; j >= 0; j--) {
+                        if((i + j) < s.length) {
+                            reversedString += s[i + j];
+                        }
+                    }
+                    reverse = false;
+                } else {
+                    for(let j = 0; j < k; j++) {
+                        if((i + j) < s.length) {
+                            reversedString += s[i + j];
+                        }
+                    }
+                    reverse = true;
+                }
+            }
+            
+            return reversedString;
+        };
+
+        // Output: "bacdfeg"
+        console.log(reverseStr("abcdefg", 2));
+
+        // Output: "bacd"
+        console.log(reverseStr("abcd", 2));
+
+        // Output: cbadef
+        console.log(reverseStr("abcdef", 3));
+    </script>
+</body>
+</html>
