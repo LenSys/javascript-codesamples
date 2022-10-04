@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maximum Product of Word Lengths</title>
+</head>
+<body>
+    <script language="javascript">
+        /*
+        Maximum Product of Word Lengths
+        
+        Given a string array words, return the maximum value of 
+        length(word[i]) * length(word[j]) where the two words do not share 
+        common letters. If no such two words exist, return 0.
+
+        Input: words = ["abcw","baz","foo","bar","xtfn","abcdef"]
+        Output: 16
+        Explanation: The two words can be "abcw", "xtfn".
+
+        Input: words = ["a","ab","abc","d","cd","bcd","abcd"]
+        Output: 4
+        Explanation: The two words can be "ab", "cd".
+
+        Input: words = ["a","aa","aaa","aaaa"]
+        Output: 0
+        Explanation: No such pair of words.
+        */
+
+        var maxProduct = function(words) {
+    
+            let maxWordsLength = 0;
+            
+            for(let i = 0; i < words.length - 1; i++) {
+                for(j = 1; j < words.length; j++) {
+                    let word1 = words[i];
+                    let word2 = words[j];
+                    
+                    let lettersOfWord2 = word2.split('');
+                    let hasCommonLetters = false;
+                    
+                    // check if first word contains a char of the second word
+                    for(let k = 0; k < lettersOfWord2.length; k++) {
+                        if(word1.indexOf(lettersOfWord2[k]) !== -1) {
+                            // found same letters in both words
+                            hasCommonLetters = true;
+                            break;
+                        }
+                    }
+                    
+                    if(!hasCommonLetters) {
+                        let currentWordsLength = word1.length * word2.length;
+                        // console.log('words', word1, word2, currentWordsLength);
+                        
+                        if(currentWordsLength > maxWordsLength) {
+                            maxWordsLength = currentWordsLength;
+                        }
+                    }
+                }
+            }
+            // console.log('---');
+            
+            return maxWordsLength;
+        };
+
+        // Output: 16
+        console.log(maxProduct(["abcw","baz","foo","bar","xtfn","abcdef"]));
+
+        // Output: 4
+        console.log(maxProduct(["a","ab","abc","d","cd","bcd","abcd"]));
+
+        // Output: 0
+        console.log(maxProduct(["a","aa","aaa","aaaa"]));
+    </script>
+</body>
+</html>
