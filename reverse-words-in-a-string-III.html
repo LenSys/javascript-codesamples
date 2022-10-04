@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reverse Words in a String III</title>
+</head>
+<body>
+    <script language="javascript">
+        /*
+        Reverse Words in a String III
+
+        Given a string s, reverse the order of characters in each word within a 
+        sentence while still preserving whitespace and initial word order.
+
+        Input: s = "Let's take LeetCode contest"
+        Output: "s'teL ekat edoCteeL tsetnoc"
+
+        Input: s = "God Ding"
+        Output: "doG gniD"
+        */
+        var reverseWords = function(s) {
+            let words = s.split(' ');
+            
+            let flippedSentence = '';
+            for(let i = 0; i < words.length; i++) {
+                let word = words[i];
+                
+                for(let j = word.length - 1; j >= 0; j--) {
+                    let character = word[j];
+                    flippedSentence += character;
+                }
+                
+                flippedSentence += ' ';
+            }
+            
+            return flippedSentence.trim();
+        };
+
+        // Output: "s'teL ekat edoCteeL tsetnoc" 
+        console.log(reverseWords("Let's take LeetCode contest"));
+
+        // Output: "doG gniD"
+        console.log(reverseWords("God Ding"));
+    </script>
+</body>
+</html>
