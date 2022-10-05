@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Counting Words With a Given Prefix</title>
+</head>
+<body>
+    <script language="javascript">
+        /*
+        Counting Words With a Given Prefix
+
+        You are given an array of strings words and a string pref.
+
+        Return the number of strings in words that contain pref as a prefix.
+        A prefix of a string s is any leading contiguous substring of s.
+
+        Input: words = ["pay","attention","practice","attend"], pref = "at"
+        Output: 2
+        Explanation: The 2 strings that contain "at" as a prefix are: 
+                     "attention" and "attend".
+
+        Input: words = ["leetcode","win","loops","success"], pref = "code"
+        Output: 0
+        Explanation: There are no strings that contain "code" as a prefix.
+        */
+        var prefixCount = function(words, pref) {
+    
+            let prefCount = 0;
+            for(let i = 0; i < words.length; i++) {
+                let word = words[i];
+                let wordPref = word.substring(0, pref.length);
+                
+                if(pref === wordPref) {
+                    prefCount++;
+                }
+            }
+            
+            return prefCount;
+        };
+
+        // Output: 2
+        console.log(prefixCount(["pay","attention","practice","attend"], "at"));
+
+        // Output: 0
+        console.log(prefixCount(["leetcode","win","loops","success"], "code"));
+    </script>
+</body>
+</html>
