@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Check If Two String Arrays are Equivalent</title>
+</head>
+<body>
+    <script language="javascript">
+        /*
+        Check If Two String Arrays are Equivalent
+
+        Given two string arrays word1 and word2, return true if the two arrays represent 
+        the same string, and false otherwise.
+
+        A string is represented by an array if the array elements concatenated in order 
+        forms the string.
+
+        Input: word1 = ["ab", "c"], word2 = ["a", "bc"]
+        Output: true
+        Explanation:
+                     word1 represents string "ab" + "c" -> "abc"
+                     word2 represents string "a" + "bc" -> "abc"
+                     The strings are the same, so return true.
+
+        Input: word1 = ["a", "cb"], word2 = ["ab", "c"]
+        Output: false
+
+        Input: word1  = ["abc", "d", "defg"], word2 = ["abcddefg"]
+        Output: true
+        */
+        var arrayStringsAreEqual = function(word1, word2) {
+    
+            let sentence1 = word1.join('');
+            let sentence2 = word2.join('');
+            
+            if(sentence1.length !== sentence2.length) {
+                return false;
+            }
+            
+            let isEqual = true;
+            for(let i = 0; i < sentence1.length; i++) {
+                let char1 = sentence1[i];
+                let char2 = sentence2[i];
+                
+                if(char1 !== char2) {
+                    isEqual = false;
+                    break;
+                }
+            }
+            
+            return isEqual;
+        };
+
+
+        // Output: true
+        console.log(arrayStringsAreEqual(["ab", "c"], ["a", "bc"]));
+
+        // Output: false
+        console.log(arrayStringsAreEqual(["a", "cb"], ["ab", "c"]));
+
+        // Output: true
+        console.log(arrayStringsAreEqual(["abc", "d", "defg"], ["abcddefg"]));
+    </script>
+</body>
+</html>
