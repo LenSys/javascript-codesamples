@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sort the People</title>
+</head>
+<body>
+    <script language="javascript">
+        /*
+        Sort the People
+
+        You are given an array of strings names, and an array heights that 
+        consists of distinct positive integers. Both arrays are of length n.
+
+        For each index i, names[i] and heights[i] denote the name and height 
+        of the ith person.
+
+        Return names sorted in descending order by the people's heights.
+
+        Input: names = ["Mary","John","Emma"], heights = [180,165,170]
+        Output: ["Mary","Emma","John"]
+        Explanation: Mary is the tallest, followed by Emma and John.
+
+        Input: names = ["Alice","Bob","Bob"], heights = [155,185,150]
+        Output: ["Bob","Alice","Bob"]
+        Explanation: The first Bob is the tallest, followed by Alice and the 
+                     second Bob.
+        */
+        var sortPeople = function(names, heights) {
+    
+            for(let i = 0; i < heights.length; i++) {
+                for(let j = heights.length - 1; j >= 0; j--) {
+                    
+                    // check if current person is smaller than the next person
+                    if(heights[j] < heights[j + 1]) {
+                        // switch heights
+                        let tempHeight = heights[j];
+                        heights[j] = heights[j + 1];
+                        heights[j + 1] = tempHeight;
+                        
+                        // switch names
+                        let tempNames = names[j];
+                        names[j] = names[j + 1];
+                        names[j + 1] = tempNames;
+                    }
+                }
+            }
+            
+            return names;
+        };
+
+        // Output: "Mary","Emma","John"]
+        console.log(sortPeople(["Mary","Emma","John"], [180,165,170]));
+
+        // Output: ["Bob","Alice","Bob"]
+        console.log(sortPeople(["Alice","Bob","Bob"], [155,185,150]));
+    </script>
+</body>
+</html>
