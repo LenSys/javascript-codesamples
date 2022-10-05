@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Merge Sorted Array</title>
+</head>
+<body>
+    <script language="javascript">
+        /*
+        Merge Sorted Array
+
+        You are given two integer arrays nums1 and nums2, sorted in 
+        non-decreasing order, and two integers m and n, representing the 
+        number of elements in nums1 and nums2 respectively.
+
+        Merge nums1 and nums2 into a single array sorted in non-decreasing 
+        order.
+
+        The final sorted array should not be returned by the function, but 
+        instead be stored inside the array nums1. To accommodate this, nums1 
+        has a length of m + n, where the first m elements denote the elements 
+        that should be merged, and the last n elements are set to 0 and should 
+        be ignored. nums2 has a length of n.
+
+        Input: nums1 = [1,2,3,0,0,0], m = 3, nums2 = [2,5,6], n = 3
+        Output: [1,2,2,3,5,6]
+        Explanation: The arrays we are merging are [1,2,3] and [2,5,6].
+                     The result of the merge is [1,2,2,3,5,6] with the 
+                     underlined elements coming from nums1.
+
+        Input: nums1 = [1], m = 1, nums2 = [], n = 0
+        Output: [1]
+        Explanation: The arrays we are merging are [1] and [].
+                     The result of the merge is [1].
+
+        Input: nums1 = [0], m = 0, nums2 = [1], n = 1
+        Output: [1]
+        Explanation: The arrays we are merging are [] and [1].
+                     The result of the merge is [1].
+                     Note that because m = 0, there are no elements in nums1. 
+                     The 0 is only there to ensure the merge result can fit 
+                     in nums1.
+        */
+        var merge = function(nums1, m, nums2, n) {
+            for(let i = 0; i < n; i++) {
+                nums1[i + m] = nums2[i];   
+            }
+            
+            // sort array
+            for(let i = 0; i < nums1.length; i++) {
+                for(let j = nums1.length - 1; j >= 0; j--) {
+                    if(nums1[j] > nums1[j + 1]) {
+                        let temp = nums1[j + 1];
+                        nums1[j + 1] = nums1[j];
+                        nums1[j] = temp;
+                    }
+                }
+            }
+            
+            console.log(nums1);
+        };
+
+        // Output: [1,2,2,3,5,6]
+        let arr1 = [1,2,3,0,0,0];
+        merge(arr1, 3, [2,5,6], 3);
+        console.log(arr1);
+    </script>
+</body>
+</html>
