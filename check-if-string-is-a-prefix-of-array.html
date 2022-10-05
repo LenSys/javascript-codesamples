@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Check If String Is a Prefix of Array</title>
+</head>
+<body>
+    <script language="javascript">
+        /*
+        Check If String Is a Prefix of Array
+
+        Given a string s and an array of strings words, determine whether s is a prefix 
+        string of words.
+
+        A string s is a prefix string of words if s can be made by concatenating the first 
+        k strings in words for some positive k no larger than words.length.
+        Return true if s is a prefix string of words, or false otherwise.
+
+        Input: s = "iloveleetcode", words = ["i","love","leetcode","apples"]
+        Output: true
+        Explanation:
+                     s can be made by concatenating "i", "love", and "leetcode" together.
+
+        Input: s = "iloveleetcode", words = ["apples","i","love","leetcode"]
+        Output: false
+        Explanation:
+                     It is impossible to make s using a prefix of arr.
+        */
+        var isPrefixString = function(s, words) {
+            let isStringPossible = false;
+            let prefix = '';
+            for(let i = 0; i < words.length; i++) {
+                let word = words[i];
+                let index = s.indexOf(prefix + word);
+                
+                // console.log("i", index, word);
+                
+                if(index !== -1) {
+                    // word is contained in string
+                    // check if complete word
+                    if(s === (prefix + word)) {
+                        isStringPossible = true;
+                        break;
+                    } else {
+                        prefix += word;
+                    }
+                } else {
+                    // word is not contained in string
+                    isStringPossible = false;
+                    break;
+                }
+            }
+            
+            return isStringPossible;
+        };
+
+        // Output: true
+        console.log(isPrefixString("iloveleetcode", ["i","love","leetcode","apples"]));
+
+        // Output: false
+        console.log(isPrefixString("iloveleetcode", ["apples","i","love","leetcode"]));
+
+        // Output: false
+        console.log(isPrefixString("ccccccccc", ["c","cc"]));
+    </script>
+</body>
+</html>
