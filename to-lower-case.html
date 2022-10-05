@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To Lower Case</title>
+</head>
+<body>
+    <script language="javascript">
+        /*
+        To Lower Case
+
+        Given a string s, return the string after replacing every uppercase letter with the 
+        same lowercase letter.
+
+        Input: s = "Hello"
+        Output: "hello"
+
+        Input: s = "here"
+        Output: "here"
+
+        Input: s = "LOVELY"
+        Output: "lovely"
+        */
+        var toLowerCase = function(s) {
+            let uppercaseChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+            let lowercaseChars = "abcdefghijklmnopqrstuvwxyz";
+            
+            let lowercaseSentence = '';
+            for(let i = 0; i < s.length; i++) {
+                let char = s[i];
+                let index = uppercaseChars.indexOf(char);
+                
+                if(index === -1) {
+                    lowercaseSentence += char;
+                } else {
+                    lowercaseSentence += lowercaseChars[index];
+                }
+            }
+            
+            return lowercaseSentence;
+        };
+
+        // Output: "hello"
+        console.log(toLowerCase("Hello"));
+
+        // Output: "here"
+        console.log(toLowerCase("here"));
+
+        // Output: "lovely"
+        console.log(toLowerCase("LOVELY"));
+
+    </script>
+</body>
+</html>
