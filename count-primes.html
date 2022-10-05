@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Count Primes</title>
+</head>
+<body>
+    <script language="javascript">
+        /* 
+        Count Primes
+
+        Given an integer n, return the number of prime numbers that are strictly less than n.
+
+        Input: n = 10
+        Output: 4
+        Explanation: There are 4 prime numbers less than 10, they are 2, 3, 5, 7.
+
+        Input: n = 0
+        Output: 0
+
+        Input: n = 1
+        Output: 0
+
+        use: Sieve of Eratosthenes
+        */
+        var countPrimes = function(n) {
+    
+            let numbers = [];
+            let isPrimeArr = [];
+            
+            // start with all numbers as prime
+            for(let i = 2; i <= n; i++) {
+                // create array
+                numbers[i] = i;
+                isPrimeArr[i] = true;
+            }
+            
+            let primeCount = 0;
+            for(let i = 2; i < n; i++) {
+                let isPrime = isPrimeArr[i];
+                
+                // check if current number is a prime
+                if(isPrime) {
+                    primeCount++;
+                    // run through all multiples of current prime
+                    for (let j = i * i; j <= n; j += i) {
+                        // set multiple as not prime
+                        isPrimeArr[j] = false;
+                    }
+                }
+            }
+            
+            return primeCount;
+        };
+
+        // Output: 4
+        console.log(countPrimes(10));
+
+        // Output: 0
+        console.log(countPrimes(1));
+
+        // Output: 0
+        console.log(countPrimes(0));
+
+        // Output: 0
+        console.log(countPrimes(2));
+    </script>
+</body>
+</html>
