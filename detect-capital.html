@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detect Capital</title>
+</head>
+<body>
+    <script language="javascript">
+        /*
+        Detect Capital
+
+        We define the usage of capitals in a word to be right when one of the following 
+        cases holds:
+
+                    All letters in this word are capitals, like "USA".
+                    All letters in this word are not capitals, like "leetcode".
+                    Only the first letter in this word is capital, like "Google".
+
+        Given a string word, return true if the usage of capitals in it is right.
+        */
+        var detectCapitalUse = function(word) {
+    
+            let uppercaseWord = word.toUpperCase();
+            let lowercaseWord = word.toLowerCase();
+            let ucFirstCharWord = word[0].toUpperCase() + word.slice(1, word.length).toLowerCase();
+            
+            let isCapitalUse = false;
+            
+            if(word === uppercaseWord) {
+                isCapitalUse = true;
+            } else if(word === lowercaseWord) {
+                isCapitalUse = true;
+            } else if(word === ucFirstCharWord) {
+                isCapitalUse = true;
+            }
+            
+            return isCapitalUse;
+        };
+
+        // Output: true
+        console.log(detectCapitalUse("USA"));
+
+        // Output: false
+        console.log(detectCapitalUse("FlaG"));
+
+        // Output: true
+        console.log(detectCapitalUse("Google"));
+    </script>
+</body>
+</html>
