@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Find Players With Zero or One Losses</title>
+</head>
+<body>
+    <script language="javascript">
+        /*
+        Find Players With Zero or One Losses
+
+        You are given an integer array matches where matches[i] = [winneri, loseri] i
+        ndicates that the player winneri defeated player loseri in a match.
+
+        Return a list answer of size 2 where:
+
+        answer[0] is a list of all players that have not lost any matches.
+        answer[1] is a list of all players that have lost exactly one match.
+        The values in the two lists should be returned in increasing order.
+
+        Note:
+
+        You should only consider the players that have played at least one match.
+        The testcases will be generated such that no two matches will have the same outcome.
+        
+        Input: matches = [[1,3],[2,3],[3,6],[5,6],[5,7],[4,5],[4,8],[4,9],[10,4],[10,9]]
+        Output: [[1,2,10],[4,5,7,8]]
+        Explanation:
+                     Players 1, 2, and 10 have not lost any matches.
+                     Players 4, 5, 7, and 8 each have lost one match.
+                     Players 3, 6, and 9 each have lost two matches.
+                     Thus, answer[0] = [1,2,10] and answer[1] = [4,5,7,8].
+
+        Input: matches = [[2,3],[1,3],[5,4],[6,4]]
+        Output: [[1,2,5,6],[]]
+        Explanation:
+                     Players 1, 2, 5, and 6 have not lost any matches.
+                     Players 3 and 4 each have lost two matches.
+                     Thus, answer[0] = [1,2,5,6] and answer[1] = [].
+
+        */
+        var findWinners = function(matches) {
+            let playerWinArr = [];
+            let playerLooserArr = [];
+            let looseCountArr = [];
+            
+            for(let i = 0; i < matches.length; i++) {
+                // get winner
+                let match = matches[i];
+                let winner = match[0];
+                let looser = match[1];
+                
+                if(playerWinArr.indexOf(winner) === -1) {
+                    playerWinArr.push(winner);
+                }
+                
+                if(playerLooserArr.indexOf(looser) === -1) {
+                    playerLooserArr.push(looser);
+                }
+                
+                looseCountArr[looser] = (looseCountArr[looser] !== undefined) ? (looseCountArr[looser] + 1) : 1;
+            }
+            
+            let allWinnersArr = [];
+            for(let i = 0; i < playerWinArr.length; i++) {
+                let winner = playerWinArr[i];
+                
+                if(playerLooserArr.indexOf(winner) === -1) {
+                    allWinnersArr.push(winner);
+                }
+            }
+            
+            let oneLossArr = [];
+            for(let i = 0; i < playerLooserArr.length; i++) {
+                let looser = playerLooserArr[i];
+                
+                if(looseCountArr[looser] === 1) {
+                    // exactly one loss
+                    oneLossArr.push(looser);
+                }
+            }
+            
+            
+            allWinnersArr.sort( function( a , b){
+                if(a > b) return 1;
+                if(a < b) return -1;
+                return 0;
+            });
+            
+            oneLossArr.sort( function( a , b){
+                if(a > b) return 1;
+                if(a < b) return -1;
+                return 0;
+            });
+            
+            let resultArr = [];
+            resultArr[0] = [...allWinnersArr];
+            resultArr[1] = [...oneLossArr];
+            
+            return resultArr;
+        };
+
+        // Output: [[1,2,10],[4,5,7,8]]
+        console.log(findWinners([[1,3],[2,3],[3,6],[5,6],[5,7],[4,5],[4,8],[4,9],[10,4],[10,9]]));
+
+        // Output: [[1,2,5,6],[]]
+        console.log(findWinners([[2,3],[1,3],[5,4],[6,4]]));
+    </script>
+</body>
+</html>
