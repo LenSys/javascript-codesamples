@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minimum Time to Type Word Using Special Typewriter</title>
+</head>
+<body>
+    <script language="javascript">
+        /*
+        Minimum Time to Type Word Using Special Typewriter
+
+        There is a special typewriter with lowercase English letters 'a' to 'z' 
+        arranged in a circle with a pointer. A character can only be typed if the pointer 
+        is pointing to that character. The pointer is initially pointing to the character 'a'.
+        (see https://leetcode.com/problems/minimum-time-to-type-word-using-special-typewriter/)
+
+        Each second, you may perform one of the following operations:
+
+        Move the pointer one character counterclockwise or clockwise.
+        Type the character the pointer is currently on.
+        Given a string word, return the minimum number of seconds to type out the characters 
+        in word.
+
+        Input: word = "abc"
+        Output: 5
+        Explanation: 
+                     The characters are printed as follows:
+                     - Type the character 'a' in 1 second since the pointer is initially on 'a'.
+                     - Move the pointer clockwise to 'b' in 1 second.
+                     - Type the character 'b' in 1 second.
+                     - Move the pointer clockwise to 'c' in 1 second.
+                     - Type the character 'c' in 1 second.
+        
+        Input: word = "bza"
+        Output: 7
+        Explanation:
+                     The characters are printed as follows:
+                     - Move the pointer clockwise to 'b' in 1 second.
+                     - Type the character 'b' in 1 second.
+                     - Move the pointer counterclockwise to 'z' in 2 seconds.
+                     - Type the character 'z' in 1 second.
+                     - Move the pointer clockwise to 'a' in 1 second.
+                     - Type the character 'a' in 1 second.
+        
+        Input: word = "zjpc"
+        Output: 34
+        Explanation:
+                     The characters are printed as follows:
+                     - Move the pointer counterclockwise to 'z' in 1 second.
+                     - Type the character 'z' in 1 second.
+                     - Move the pointer clockwise to 'j' in 10 seconds.
+                     - Type the character 'j' in 1 second.
+                     - Move the pointer clockwise to 'p' in 6 seconds.
+                     - Type the character 'p' in 1 second.
+                     - Move the pointer counterclockwise to 'c' in 13 seconds.
+                     - Type the character 'c' in 1 second.
+        
+        */
+        var minTimeToType = function(word) {    
+            let pointer = 'a';
+            let seconds = 0;
+            for(let i = 0; i < word.length; i++) {
+                let letter = word[i];
+                
+                // check if same character as pointer
+                if(letter === pointer) {
+                    // add only one second for typing
+                    seconds++;
+                    continue;
+                }
+                
+                // calculate distance between current letter and pointer
+                let distance = Math.abs(letter.charCodeAt(0) - pointer.charCodeAt(0));
+                distance = Math.min(distance, 26 - distance);
+                pointer = letter;
+                
+                seconds += distance;
+
+                // add one for typing character
+                seconds++;
+            }
+            
+            return seconds;
+        };
+
+        // Output: 5
+        console.log(minTimeToType("abc"));
+
+        // Output: 7
+        console.log(minTimeToType("bza"));
+
+        // Output: 34
+        console.log(minTimeToType("zjpc"));
+    </script>
+</body>
+</html>
