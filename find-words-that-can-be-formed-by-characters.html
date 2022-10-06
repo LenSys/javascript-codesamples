@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Find Words That Can Be Formed by Characters</title>
+</head>
+<body>
+    <script language="javascript">
+        /*
+        Find Words That Can Be Formed by Characters
+
+        You are given an array of strings words and a string chars.
+
+        A string is good if it can be formed by characters from chars (each character 
+        can only be used once). Return the sum of lengths of all good strings in words.
+        
+        Input: words = ["cat","bt","hat","tree"], chars = "atach"
+        Output: 6
+        Explanation: The strings that can be formed are "cat" and "hat" so the answer 
+                     is 3 + 3 = 6.
+
+        Input: words = ["hello","world","leetcode"], chars = "welldonehoneyr"
+        Output: 10
+        Explanation: The strings that can be formed are "hello" and "world" so the answer 
+                     is 5 + 5 = 10.
+        */
+        var countCharacters = function(words, chars) {
+            let countChars = 0;
+            for(let i = 0; i < words.length; i++) {
+                let isValidWord = true;
+                let word = words[i];
+                let availableChars = chars;
+                
+                for(let j = 0; j < word.length; j++) {
+                    let char = word[j];
+                    let charIndex = availableChars.indexOf(char);
+                    if(charIndex === -1) {
+                        isValidWord = false;
+                        break;
+                    } else {
+                        // remove current char from available chars
+                        let availableCharsArr = availableChars.split('');
+                        availableCharsArr.splice(charIndex, 1);
+                        
+                        availableChars = availableCharsArr.join('');
+                    }
+                }
+                
+                if(isValidWord) {
+                    countChars += word.length;
+                }
+            }
+            
+            return countChars;
+        };
+
+        // Output: 6
+        console.log(countCharacters(["cat","bt","hat","tree"], "atach"));
+
+        // Output: 10
+        console.log(countCharacters(["hello","world","leetcode"], "welldonehoneyr"));
+
+        // Output: 0
+        console.log(countCharacters([
+            "dyiclysmffuhibgfvapygkorkqllqlvokosagyelotobicwcmebnpznjbirzrzsrtzjxhsfpiwyfhzyonmuabtlwin",
+            "ndqeyhhcquplmznwslewjzuyfgklssvkqxmqjpwhrshycmvrb","ulrrbpspyudncdlbkxkrqpivfftrggemkpyjl",
+            "boygirdlggnh",
+            "xmqohbyqwagkjzpyawsydmdaattthmuvjbzwpyopyafphx",
+            "nulvimegcsiwvhwuiyednoxpugfeimnnyeoczuzxgxbqjvegcxeqnjbwnbvowastqhojepisusvsidhqmszbrnynkyop",
+            "hiefuovybkpgzygprmndrkyspoiyapdwkxebgsmodhzpx",
+            "juldqdzeskpffaoqcyyxiqqowsalqumddcufhouhrskozhlmobiwzxnhdkidr",
+            "lnnvsdcrvzfmrvurucrzlfyigcycffpiuoo",
+            "oxgaskztzroxuntiwlfyufddl",
+            "tfspedteabxatkaypitjfkhkkigdwdkctqbczcugripkgcyfezpuklfqfcsccboarbfbjfrkxp",
+            "qnagrpfzlyrouolqquytwnwnsqnmuzphne",
+            "eeilfdaookieawrrbvtnqfzcricvhpiv",
+            "sisvsjzyrbdsjcwwygdnxcjhzhsxhpceqz",
+            "yhouqhjevqxtecomahbwoptzlkyvjexhzcbccusbjjdgcfzlkoqwiwue",
+            "hwxxighzvceaplsycajkhynkhzkwkouszwaiuzqcleyflqrxgjsvlegvupzqijbornbfwpefhxekgpuvgiyeudhncv",
+            "cpwcjwgbcquirnsazumgjjcltitmeyfaudbnbqhflvecjsupjmgwfbjo",
+            "teyygdmmyadppuopvqdodaczob",
+            "qaeowuwqsqffvibrtxnjnzvzuuonrkwpysyxvkijemmpdmtnqxwekbpfzs",
+            "qqxpxpmemkldghbmbyxpkwgkaykaerhmwwjonrhcsubchs"], 
+            "usdruypficfbpfbivlrhutcgvyjenlxzeovdyjtgvvfdjzcmikjraspdfp"));
+    </script>
+</body>
+</html>
