@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Find First Palindromic String in the Array</title>
+</head>
+<body>
+    <script language="javascript">
+        /*
+        Find First Palindromic String in the Array
+
+        Given an array of strings words, return the first palindromic string in the array. 
+        If there is no such string, return an empty string "".
+
+        A string is palindromic if it reads the same forward and backward.
+
+        Input: words = ["abc","car","ada","racecar","cool"]
+        Output: "ada"
+        Explanation: The first string that is palindromic is "ada".
+                     Note that "racecar" is also palindromic, but it is not the first.
+
+        Input: words = ["notapalindrome","racecar"]
+        Output: "racecar"
+        Explanation: The first and only string that is palindromic is "racecar".
+
+        Input: words = ["def","ghi"]
+        Output: ""
+        Explanation: There are no palindromic strings, so the empty string is returned.
+        */
+        function isPalindrome(word) {
+            let leftPointer = 0;
+            let rightPointer = word.length - 1;
+            let l = parseInt(word.length / 2);
+            
+            let isPalindrome = true;
+            
+            for(let i = 0; i < l; i++) {
+                let leftChar = word[leftPointer];
+                let rightChar = word[rightPointer];
+                
+                if(leftChar !== rightChar) {
+                    isPalindrome = false;
+                    break;
+                }
+                
+                leftPointer++;
+                rightPointer--;
+            }
+            
+            return isPalindrome;
+        }
+
+        var firstPalindrome = function(words) {
+    
+            for(let i = 0; i < words.length; i++) {
+                let word = words[i];
+                
+                if(isPalindrome(word)) {
+                    return word;
+                }
+            }
+            
+            return "";
+        };
+
+        // Output: "ada"
+        console.log(firstPalindrome(["abc","car","ada","racecar","cool"]));
+
+        // Output: "racecar"
+        console.log(firstPalindrome(["notapalindrome","racecar"]));
+
+        // Output: ""
+        console.log(firstPalindrome(["def","ghi"]));
+
+        // Output: ""
+        console.log(firstPalindrome([
+            "umicrszeaswtfmctwvoogehszwdjrwdcgyxxetbzevxrqphubyqbgpfetguyv",
+            "vzdzfwyevkvqhmvqssnvpayihawydzcovzmh",
+            "drvqqepesvornphmikbimxennygxisdysssmxjmaaecaqiwdgfxitoopigxauoojsebjmbcrymvpnnfomlkg",
+            "vvszfvtykdyfiywxgxmjpcawzdaovbujmexggwczovhspkrdsskxzrpgfaspnbncdspktcyfkkshpyojwwlysizd",
+            "epdtgfhgninnwqzztwm",
+            "dmhynaogcxyaxsghzjwzyqfuwyinstxoqcdkxeobinpqeplw",
+            "ruhxgdrzfyqyqmxclfqosyczqapiizxlzgixdxthhrv",
+            "dwcblqnxtrwtqmtqenidhxnifdbmdvobwmcvwjxgbyjzgvrqzlskjbfirauguhyyjhlotuckssrkqzppzbqd",
+            "gxdq",
+            "paesyowqeguvxozbixjqppeagycjx",
+            "glstauwugkidegnllapgzbzchckepmhbameuigsiqywbilwolxuwzzjwzouqknhlkbjzejxtponmkqjlojurxnryxyqy",
+            "inyhioiwanafuhsprudtkqztoakxhbmqcmibsxlhycbmqrvtfabsncmiymthcxwkwkq",
+            "djknenppuleedpptrfjgqfejcoghnxjlvjalxkyvnujgiiwdbtvgqvgsivkzqcrbfcvooyhqmrlacyiozytmampjwpknrj",
+            "zzrpjoogwkdmdxdkdwgwugqtmzryrgtelnvydyqewpdzzptqzvffppgnhhcaiqotmyslntlwjajzuzbawidpxjtyxryg",
+            "xmegifttkamzbpjqbghgwdrkvtnuwfmjdmwehdqiyvgpxxlbkcvkemjbmhbyeqyfssytuwaeysvgnidhcgpncxdxxzhrkbvyqfrs",
+            "wgljaiyhyfdijjgihseciabfcoqfojhswewpkpartzmaaglvdfifpptycyonigwcgyklapzojivgojcrevugspejmwanolg",
+            "oceurgzgvvctgydqexhghwcochhmtoxjugreqfdnsshffngchetrwedhinosdhwlgviohpkjowr",
+            "dyl",
+            "vjxkcihfmnmmz",
+            "aheg",
+            "dwsomlqmaqifihkwahvywzqamgominhxfsgrgbgvoiopnikhxonpetelfsguvhxgiujrij",
+            "pdrjgfqzyqczpwdsfzypgkmsvnpboutmcffqrwuzkchaufymmczrdwulbvbanungpxqk",
+            "eudbizaabgfzqytowifsuovmxmkjgajtliyfycbrkxeaarakapqoihawmdzmglfnglpwqnfd",
+            "txdclnfwxevu",
+            "kslqrafjshhadqszeljcekrpnpxqgppbnadmzmpufvadcghxqdqmafpbnutifigstxyilmgx",
+            "yhhvhyoolv",
+            "sjtubggxcla",
+            "vydf"
+            ]));
+    </script>
+</body>
+</html>
