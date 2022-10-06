@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Decrypt String from Alphabet to Integer Mapping</title>
+</head>
+<body>
+    <script language="javascript">
+        /*
+        Decrypt String from Alphabet to Integer Mapping
+
+        You are given a string s formed by digits and '#'. We want to map s to English 
+        lowercase characters as follows:
+
+        Characters ('a' to 'i') are represented by ('1' to '9') respectively.
+        Characters ('j' to 'z') are represented by ('10#' to '26#') respectively.
+        Return the string formed after mapping.
+
+        The test cases are generated so that a unique mapping will always exist.
+
+
+        Input: s = "10#11#12"
+        Output: "jkab"
+        Explanation: "j" -> "10#" , "k" -> "11#" , "a" -> "1" , "b" -> "2".
+
+        Input: s = "1326#"
+        Output: "acz"
+        */
+        var freqAlphabets = function(s) {
+    
+            let decryptedWord = '';
+            let firstSmallChar = 97;
+            for(let i = s.length - 1; i >= 0; i--) {
+                // check if last char is a '#'
+                let char = s[i];
+                
+                if(char === '#') {
+                    // j to z
+                    // -> get two previous chars
+                    let jToZNumber = s[i - 2] + s[i - 1];
+                    
+                    let jToZ = String.fromCharCode(firstSmallChar - 1 + parseInt(jToZNumber));
+                    
+                    decryptedWord = jToZ + decryptedWord;
+                    
+                    // update pointer offset
+                    i = i - 2;
+                } else {
+                    // a to i
+                    // parse current number
+                    let aToI = String.fromCharCode(firstSmallChar - 1 + parseInt(char));
+                    
+                    decryptedWord = aToI + decryptedWord;
+                }
+            }
+            
+            return decryptedWord;
+        };
+
+        // Output: "jkab"
+        console.log(freqAlphabets("10#11#12"));
+
+        // Output: "acz"
+        console.log(freqAlphabets("1326#"));
+    </script>
+</body>
+</html>
