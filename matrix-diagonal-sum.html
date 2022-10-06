@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Matrix Diagonal Sum</title>
+</head>
+<body>
+    <script language="javascript">
+        /*
+        Matrix Diagonal Sum
+        
+        Given a square matrix mat, return the sum of the matrix diagonals.
+        Only include the sum of all the elements on the primary diagonal and all the elements 
+        on the secondary diagonal that are not part of the primary diagonal.
+        
+        Input: mat = [[1,2,3],
+                      [4,5,6],
+                      [7,8,9]]
+        Output: 25
+        Explanation: Diagonals sum: 1 + 5 + 9 + 3 + 7 = 25
+                     Notice that element mat[1][1] = 5 is counted only once.
+
+        Input: mat = [[1,1,1,1],
+                      [1,1,1,1],
+                      [1,1,1,1],
+                      [1,1,1,1]]
+        Output: 8
+
+        Input: mat = [[5]]
+        Output: 5
+        */
+        var diagonalSum = function(mat) {
+            let primaryDiagonalSum = 0;
+            let secondaryDiagonalSum = 0;
+            let l = mat.length;
+            
+            let addedCell = [];
+            
+            for(let i = 0; i < l; i++) {
+                let row = mat[i];
+                
+                for(let j = 0; j < row.length; j++) {
+                    let cell = row[j];
+                    let cellName = i + "," + j;
+                    
+                    if(i == j) {
+                        primaryDiagonalSum += cell;
+                        addedCell.push(cellName);
+                    }
+                    
+                    if((i + j) == l - 1) {
+                        // conly add the cell if it was not added in primary diagonal sum
+                        if(addedCell.indexOf(cellName) === -1) {
+                            secondaryDiagonalSum += cell; 
+                        }
+                    }
+                }
+            }
+            
+            return primaryDiagonalSum + secondaryDiagonalSum;
+        };
+
+        // Output: 25
+        console.log(diagonalSum([[1,2,3],[4,5,6],[7,8,9]]));
+
+        // Output: 8
+        console.log(diagonalSum([[1,1,1,1],[1,1,1,1],[1,1,1,1],[1,1,1,1]]));
+
+        // Output: 5
+        console.log(diagonalSum([[5]]));
+    </script>
+</body>
+</html>
