@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Convert Integer to the Sum of Two No-Zero Integers</title>
+</head>
+<body>
+    <script language="javascript">
+        /*
+        Convert Integer to the Sum of Two No-Zero Integers
+
+        No-Zero integer is a positive integer that does not contain any 0 in its decimal 
+        representation.
+
+        Given an integer n, return a list of two integers [A, B] where:
+
+        A and B are No-Zero integers.
+        A + B = n
+        The test cases are generated so that there is at least one valid solution. 
+        If there are many valid solutions you can return any of them.
+
+        Input: n = 2
+        Output: [1,1]
+        Explanation: A = 1, B = 1. A + B = n and both A and B do not contain any 0 in 
+                     their decimal representation.
+
+        Input: n = 11
+        Output: [2,9]
+        */
+        var getNoZeroIntegers = function(n) {
+            let a = 1;
+            let b = 0;
+            for(a = 1; a < n; a++) {
+                b = n - a;
+                
+                if(a.toString().indexOf('0') !== -1) {
+                    continue;
+                }
+                
+                if(b.toString().indexOf('0') !== -1) {
+                    continue;
+                }
+                
+                if((b > 0) && (b % 10) !== 0) {
+                    break;
+                }
+            }
+            
+            let arr = [];
+            arr[0] = a;
+            arr[1] = b;
+            
+            return arr;
+        };
+
+        // Output: [1,1]
+        console.log(getNoZeroIntegers(2));
+
+        // Output: [2, 9]
+        console.log(getNoZeroIntegers(11));
+
+        // Output: [1, 68]
+        console.log(getNoZeroIntegers(69));
+
+        // Output: [11, 999]
+        console.log(getNoZeroIntegers(1010));
+    </script>
+</body>
+</html>
