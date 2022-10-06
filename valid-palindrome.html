@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Valid Palindrome</title>
+</head>
+<body>
+    <script language="javascript">
+        /*
+        Valid Palindrome
+
+        A phrase is a palindrome if, after converting all uppercase letters into lowercase 
+        letters and removing all non-alphanumeric characters, it reads the same forward and 
+        backward. Alphanumeric characters include letters and numbers.
+
+        Given a string s, return true if it is a palindrome, or false otherwise.
+        */
+        var isPalindrome = function(s) {
+    
+            // remove all invalid chars from string
+            let word = s.replace(/[ ,;\.:!@\#_'\[\]\{\}\"\(\)`]/g, "");
+            word = word.replaceAll("?", "");
+            word = word.replaceAll("-", "");
+            word = word.toLowerCase();
+            
+            console.log(word);
+            
+            let leftPointer = 0;
+            let rightPointer = word.length - 1;
+            let l = parseInt(word.length / 2);
+            
+            let isValidPalindrome = true;
+            
+            for(let i = 0; i < l; i++) {
+                let leftChar = word[leftPointer];
+                let rightChar = word[rightPointer];
+                
+                if(leftChar !== rightChar) {
+                    isValidPalindrome = false;
+                    break;
+                }
+                
+                leftPointer++;
+                rightPointer--;
+            }
+            
+            return isValidPalindrome;
+        };
+
+        // Output: true
+        console.log(isPalindrome("A man, a plan, a canal: Panama"));
+
+        // Output: false
+        console.log(isPalindrome("race a car"));
+
+        // Output: true
+        console.log(isPalindrome(" "));
+
+        // Output: true
+        console.log(isPalindrome("`l;`` 1o1 ??;l`"));
+
+        // Output: true
+        console.log(isPalindrome("A man, a plan, a canal -- Panama"));
+
+        // Output: true
+        console.log(isPalindrome("Damosel, a poem? A carol? Or a cameo pale? (So mad!)"));
+
+        // Output: true
+        console.log(isPalindrome("Bob: \"Did Anna peep?\" Anna: \"Did Bob?\""));
+
+        // Output: false
+        console.log(isPalindrome("0p"));
+    </script>
+</body>
+</html>
