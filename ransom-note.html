@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ransom Note</title>
+</head>
+<body>
+    <script language="javascript">
+        /*
+        Ransom Note
+        
+        Given two strings ransomNote and magazine, return true if ransomNote can be 
+        constructed by using the letters from magazine and false otherwise.
+
+        Each letter in magazine can only be used once in ransomNote.
+
+        Input: ransomNote = "a", magazine = "b"
+        Output: false
+
+        Input: ransomNote = "aa", magazine = "ab"
+        Output: false
+
+        Input: ransomNote = "aa", magazine = "aab"
+        Output: true
+        */
+        var canConstruct = function(ransomNote, magazine) {
+    
+            let isValidNote = true;
+            let m = magazine;
+            
+            // iterate through every letter in ransom note
+            for(let i = 0; i < ransomNote.length; i++) {
+                let char = ransomNote[i];
+                
+                // check if ransom note char is in remaining magazine chars
+                if(m.indexOf(char) === -1) {
+                    isValidNote = false;
+                    break;
+                } else {
+                    // remove one character from magazine letters
+                    m = m.replace(char, "");
+                }
+                
+                // console.log(m);
+            }
+            
+            return isValidNote;
+        };
+
+        // Output: false
+        console.log(canConstruct("a", "b"));
+
+        // Output: false
+        console.log(canConstruct("aa", "ab"));
+
+        // Output: true
+        console.log(canConstruct("aa", "aab"));
+    </script>
+</body>
+</html>
