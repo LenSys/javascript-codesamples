@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Count Asterisks</title>
+</head>
+<body>
+    <script language="javascript">
+        /*
+        Count Asterisks
+
+        You are given a string s, where every two consecutive vertical bars '|' are grouped 
+        into a pair. In other words, the 1st and 2nd '|' make a pair, the 3rd and 4th '|' 
+        make a pair, and so forth.
+
+        Return the number of '*' in s, excluding the '*' between each pair of '|'.
+        Note that each '|' will belong to exactly one pair.
+        
+        Input: s = "l|*e*et|c**o|*de|"
+        Output: 2
+        Explanation: The considered characters are: "lc**o".
+                     The characters between the first and second '|' are excluded from the 
+                     answer. Also, the characters between the third and fourth '|' are excluded 
+                     from the answer.
+                     There are 2 asterisks considered. Therefore, we return 2.
+                     
+
+        Input: s = "iamprogrammer"
+        Output: 0
+        Explanation: In this example, there are no asterisks in s. Therefore, we return 0.
+
+        Input: s = "yo|uar|e**|b|e***au|tifu|l"
+        Output: 5
+        Explanation: The considered characters are: "yoe**e***aul". 
+                     There are 5 asterisks considered. Therefore, we return 5.
+        */
+        var countAsterisks = function(s) {
+            let firstPointer = 0;
+            let str = s;
+            
+            while(firstPointer !== -1) {
+                // find first occurrence of '|'
+                firstPointer = str.indexOf('|');
+                
+                if(firstPointer !== -1) {
+                    let temp = str.substring(0, firstPointer);
+                    str = str.substring(firstPointer + 1);
+                    
+                    // console.log('1)' + str);
+                    
+                    // find second pointer
+                    let secondPointer = str.indexOf('|');
+                    
+                    if(secondPointer !== -1) {
+                        // ignore everything until second pointer
+                        str = temp + str.substring(secondPointer + 1);
+                        
+                        // console.log('2)' + str);
+                    }
+                }
+            }
+            
+            console.log('str:' + str);
+            
+            let asteriskCount = 0;
+            for(let i = 0; i < str.length; i++) {
+                let char = str[i];
+                if(char === '*') {
+                    asteriskCount++;
+                }
+            }
+            
+            return asteriskCount;
+        };
+
+        // Output: 2
+        console.log(countAsterisks("l|*e*et|c**o|*de|"));
+
+        // Output: 0
+        console.log(countAsterisks("iamprogrammer"));
+
+        // Output: 5
+        console.log(countAsterisks("yo|uar|e**|b|e***au|tifu|l"));
+    </script>
+</body>
+</html>
