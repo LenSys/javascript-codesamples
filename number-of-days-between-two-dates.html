@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Number of Days Between Two Dates</title>
+</head>
+<body>
+    <script language="javascript">
+        /*
+        Number of Days Between Two Dates
+
+        Write a program to count the number of days between two dates.
+
+        The two dates are given as strings, their format is YYYY-MM-DD as shown in the examples.
+
+        Input: date1 = "2019-06-29", date2 = "2019-06-30"
+        Output: 1
+
+        Input: date1 = "2020-01-15", date2 = "2019-12-31"
+        Output: 15
+        */
+        var daysBetweenDates = function(date1, date2) {
+            const date1Date = new Date(date1);
+            const date2Date = new Date(date2);
+            
+            // get date difference in milliseconds
+            const dateDifference = date2Date.getTime() - date1Date.getTime();
+            
+            console.log(dateDifference);
+            
+            // duration of one day in milliseconds
+            const oneDayDuration = 24 * 60 * 60 * 1000;
+            
+            // get date difference in days
+            const dateDifferenceInDays = Math.abs(Math.round(dateDifference / oneDayDuration));
+            
+            return dateDifferenceInDays;
+        };
+
+        // Output: 1
+        console.log(daysBetweenDates("2019-06-29", "2019-06-30"));
+
+        // Output: 15
+        console.log(daysBetweenDates("2020-01-15", "2019-12-31"));
+    </script>
+</body>
+</html>
