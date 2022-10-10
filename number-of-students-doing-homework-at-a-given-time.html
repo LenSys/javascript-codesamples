@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Number of Students Doing Homework at a Given Time</title>
+</head>
+<body>
+    <script language="javascript">
+        /*
+        Number of Students Doing Homework at a Given Time
+        
+        Given two integer arrays startTime and endTime and given an integer queryTime.
+
+        The ith student started doing their homework at the time startTime[i] and 
+        finished it at time endTime[i].
+
+        Return the number of students doing their homework at time queryTime. More 
+        formally, return the number of students where queryTime lays in the interval 
+        [startTime[i], endTime[i]] inclusive.
+        */
+        var busyStudent = function(startTime, endTime, queryTime) {
+    
+            let studentsDoingHomework = 0;
+            for(let i = 0; i < startTime.length; i++) {
+                let studentStart = startTime[i];
+                let studentEnd = endTime[i];
+                
+                if((studentStart <= queryTime) && (studentEnd >= queryTime)) {
+                    studentsDoingHomework++
+                }
+            }
+            
+            return studentsDoingHomework;
+        };
+
+        // Output: 1
+        console.log(busyStudent([1,2,3], [3,2,7], 4));
+
+        // Output: 1
+        console.log(busyStudent([4], [4], 4));
+    </script>
+</body>
+</html>
