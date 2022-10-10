@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Uncommon Words from Two Sentences</title>
+</head>
+<body>
+    <script language="javascript">
+        /*
+        Uncommon Words from Two Sentences
+
+        A sentence is a string of single-space separated words where each word consists only of lowercase letters.
+
+        A word is uncommon if it appears exactly once in one of the sentences, and does not 
+        appear in the other sentence.
+
+        Given two sentences s1 and s2, return a list of all the uncommon words. You may return 
+        the answer in any order.
+
+        Input: s1 = "this apple is sweet", s2 = "this apple is sour"
+        Output: ["sweet","sour"]
+
+        Input: s1 = "apple apple", s2 = "banana"
+        Output: ["banana"]
+        */
+        var uncommonFromSentences = function(s1, s2) {
+            let words1 = s1.split(' ');
+            let words2 = s2.split(' ');
+            
+            let uncommonWords1 = [];
+            let uncommonWords2 = [];
+            let multipleWords1 = [];
+            let multipleWords2 = [];
+            
+            // iterate through all words from first sentence
+            for(let i = 0; i < words1.length; i++) {
+                let word = words1[i];
+                let uncommonWordIndex = uncommonWords1.indexOf(word);
+                
+                if(uncommonWordIndex !== -1) {
+                    // word is in uncommon words, remove it because it occours multiple times now
+                    uncommonWords1.splice(uncommonWordIndex, 1);
+                    multipleWords1.push(word);
+                } else {
+                    // add current word to uncommon word list
+                    uncommonWords1.push(word);
+                }
+            }
+            
+            // iterate through all words from second sentence
+            for(let i = 0; i < words2.length; i++) {
+                let word = words2[i];
+                let uncommonWordIndex = uncommonWords2.indexOf(word);
+                
+                if(uncommonWordIndex !== -1) {
+                    // word is in uncommon words, remove it because it occours multiple times now
+                    uncommonWords2.splice(uncommonWordIndex, 1);
+                    multipleWords2.push(word);
+                } else {
+                    // add current word to uncommon word list
+                    uncommonWords2.push(word);
+                }
+            }
+            
+            let uncommonWords = [];
+            for(let i = 0; i < uncommonWords1.length; i++) {
+                let uncommonWord = uncommonWords1[i];
+                if(words2.indexOf(uncommonWord) === -1) {
+                    if(multipleWords1.indexOf(uncommonWord) === -1) {
+                        uncommonWords.push(uncommonWord);
+                    }
+                }
+            }
+            
+            for(let i = 0; i < uncommonWords2.length; i++) {
+                let uncommonWord = uncommonWords2[i];
+                if(words1.indexOf(uncommonWord) === -1) {
+                    if(multipleWords2.indexOf(uncommonWord) === -1) {
+                        uncommonWords.push(uncommonWord);
+                    }
+                }
+            }
+            
+            return uncommonWords;
+        };
+
+        // Output: ["sweet","sour"]
+        console.log(uncommonFromSentences("this apple is sweet", "this apple is sour"));
+
+        // Output: ["banana"]
+        console.log(uncommonFromSentences("apple apple", "banana"));
+    </script>
+</body>
+</html>
