@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Make Array Zero by Subtracting Equal Amounts</title>
+</head>
+<body>
+    <script language="javascript">
+        /*
+        Make Array Zero by Subtracting Equal Amounts
+        
+        You are given a non-negative integer array nums. In one operation, you must:
+
+            * Choose a positive integer x such that x is less than or equal to the 
+              smallest non-zero element in nums.
+            * Subtract x from every positive element in nums.
+
+        Return the minimum number of operations to make every element in nums equal to 0.
+        */
+        function findMinNumber(nums) {
+            let minNum = -1;
+            for(let i = 0; i < nums.length; i++) {
+                if((nums[i] > 0) && (nums[i] > minNum)) {
+                    minNum = nums[i];
+                    break;
+                }
+            }
+            
+            return minNum;
+        }
+        
+        var minimumOperations = function(nums) {
+            nums = nums.sort( function( a , b) {
+                if(a > b) return 1;
+                if(a < b) return -1;
+                return 0;
+            });
+            
+            console.log(nums);
+            
+            let numZeroOffset = 0;
+            let minNum = -1;
+            let steps = 0;
+            
+            do {
+                minNum = findMinNumber(nums);
+                
+                if(minNum > 0) {
+                    for(let i = numZeroOffset; i < nums.length; i++) {
+        
+                        if(nums[i] > 0) {
+                            nums[i] -= minNum;
+                        } else {
+                            numZeroOffset = i;
+                        }
+                    }
+                
+                    steps++;
+                    console.log(minNum, nums);
+                }
+            } while((numZeroOffset < nums.length) && (minNum > 0));
+            
+            return steps;
+        };
+        
+        // Output: 3
+        console.log(minimumOperations([1,5,0,3,5]));
+
+        // Output: 0
+        console.log(minimumOperations([0]));
+
+    </script>
+</body>
+</html>
