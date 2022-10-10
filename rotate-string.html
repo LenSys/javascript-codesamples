@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rotate String</title>
+</head>
+<body>
+    <script language="javascript">
+        /*
+        Rotate String
+
+        Given two strings s and goal, return true if and only if s can become goal 
+        after some number of shifts on s.
+
+        A shift on s consists of moving the leftmost character of s to the rightmost 
+        position.
+
+        For example, if s = "abcde", then it will be "bcdea" after one shift.
+
+        Input: s = "abcde", goal = "cdeab"
+        Output: true
+
+        Input: s = "abcde", goal = "abced"
+        Output: false
+        */
+        var rotateString = function(s, goal) {
+    
+            let originalSequence = s;
+            let shifts = 0;
+            let isValidRotation = false;
+            
+            for(let i = 0; i < 2 * originalSequence.length; i++) {
+                
+                if(originalSequence === goal) {
+                    // found goal through rotation
+                    isValidRotation = true;
+                    break;
+                }
+                
+                // rotate sequence
+                const firstChar = originalSequence[0];
+                originalSequence = originalSequence.replace(firstChar, '');
+                originalSequence = originalSequence + firstChar;
+                shifts++;
+            }
+            
+            return isValidRotation;
+        };
+
+        // Output: true
+        console.log(rotateString("abcde", "cdeab"));
+
+        // Output: false
+        console.log(rotateString("abcde", "abced"));
+    </script>
+</body>
+</html>
