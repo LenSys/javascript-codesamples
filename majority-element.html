@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Majority Element</title>
+</head>
+<body>
+    <script language="javascript">
+        /*
+        Majority Element
+
+        Given an array nums of size n, return the majority element.
+
+        The majority element is the element that appears more than ⌊n / 2⌋ times. 
+        You may assume that the majority element always exists in the array.
+        
+        Input: nums = [3,2,3]
+        Output: 3
+
+        Input: nums = [2,2,1,1,1,2,2]
+        Output: 2
+        */
+        var majorityElement = function(nums) {
+            let numFrequencyArr = new Map();
+            
+            for(let i = 0; i < nums.length; i++) {
+                let num = nums[i];
+                
+                numFrequencyArr.set(num, (numFrequencyArr.get(num) || 0) + 1);
+            }
+            
+            let maxNum = Infinity;
+            let maxFrequency = nums.length / 2.0;
+            console.log(maxFrequency);
+            for(let [num, frequency] of numFrequencyArr) {
+                if(frequency > maxFrequency) {
+                    maxNum = num;
+                }
+            }
+            
+            return maxNum;
+        };
+
+        // Output: 3
+        console.log(majorityElement([3,2,3]));
+
+        // Output: 2
+        console.log(majorityElement([2,2,1,1,1,2,2]));
+    </script>
+</body>
+</html>
