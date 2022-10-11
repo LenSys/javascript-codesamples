@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Majority Element II</title>
+</head>
+<body>
+    <script language="javascript">
+        /*
+        Majority Element II
+
+        Given an integer array of size n, find all elements that appear more than 
+        ⌊ n/3 ⌋ times.
+
+        Input: nums = [3,2,3]
+        Output: [3]
+
+        Input: nums = [1]
+        Output: [1]
+
+        Input: nums = [1,2]
+        Output: [1,2]
+        */
+        var majorityElement = function(nums) {
+            let numFrequencyMap = new Map();
+            
+            // iterate through all nums
+            for(let i = 0; i < nums.length; i++) {
+                let num = nums[i];
+                
+                // update frequency
+                numFrequencyMap.set(num, (numFrequencyMap.get(num) || 0) + 1);
+            }
+            
+            let maxNumsArr = [];
+            let maxFrequency = nums.length / 3.0;
+            console.log(maxFrequency);
+            for(let [num, frequency] of numFrequencyMap) {
+                if(frequency > maxFrequency) {
+                    maxNumsArr.push(num);
+                }
+            }
+            
+            return maxNumsArr;
+        };
+
+        // Output: [3]
+        console.log(majorityElement([3,2,3]));
+
+        // Output: [1]
+        console.log(majorityElement([1]));
+
+        // Output: [1,2]
+        console.log(majorityElement([1,2]));
+    </script>
+</body>
+</html>
