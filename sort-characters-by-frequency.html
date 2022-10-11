@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sort Characters By Frequency</title>
+</head>
+<body>
+    <script language="javascript">
+        /*
+        Sort Characters By Frequency
+
+        Given a string s, sort it in decreasing order based on the frequency of the 
+        characters. The frequency of a character is the number of times it appears in 
+        the string.
+
+        Return the sorted string. If there are multiple answers, return any of them.
+        
+        Input: s = "tree"
+        Output: "eert"
+        Explanation: 'e' appears twice while 'r' and 't' both appear once.
+                     So 'e' must appear before both 'r' and 't'. Therefore "eetr" is 
+                     also a valid answer.
+
+        Input: s = "cccaaa"
+        Output: "aaaccc"
+        Explanation: Both 'c' and 'a' appear three times, so both "cccaaa" and "aaaccc" 
+                     are valid answers. Note that "cacaca" is incorrect, as the same 
+                     characters must be together.
+
+        Input: s = "Aabb"
+        Output: "bbAa"
+        Explanation: "bbaA" is also a valid answer, but "Aabb" is incorrect.
+                     Note that 'A' and 'a' are treated as two different characters.
+        */
+        var frequencySort = function(s) {
+            let charsFrequencyArr = [];
+            let charsFrequencyString = '';
+            
+            for(let i = 0; i < s.length; i++) {
+                let char = s[i];
+                
+                let charIndex = charsFrequencyArr.findIndex((obj => obj.id == char));
+                
+                if(charIndex >= 0) {
+                    charsFrequencyArr[charIndex].frequency++;
+                } else {
+                   charsFrequencyArr.push({ id: char, frequency: 1 });
+                }
+            }
+            
+            // console.log(charsFrequencyArr);
+            
+            charsFrequencyArr = charsFrequencyArr.sort(function(a, b) {
+                return b.frequency - a.frequency;
+            });
+            
+            console.log(charsFrequencyArr);
+            
+            charsFrequencyArr.forEach(charsFrequencyData => {
+                let frequency = charsFrequencyData.frequency;
+                let char = charsFrequencyData.id;
+                
+                charsFrequencyString += char.toString().repeat(frequency);
+            });
+            
+            return charsFrequencyString;
+        };
+
+        // Output: "eert"
+        console.log(frequencySort("tree"));
+
+        // Output: "aaaccc"
+        console.log(frequencySort("cccaaa"));
+
+        // Output: "bbAa"
+        console.log(frequencySort("Aabb"));
+    </script>
+</body>
+</html>
