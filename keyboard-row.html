@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Keyboard Row</title>
+</head>
+<body>
+    <script language="javascript">
+        /*
+        Keyboard Row
+
+        Given an array of strings words, return the words that can be typed using 
+        letters of the alphabet on only one row of American keyboard like the image 
+        below.
+
+        In the American keyboard:
+            * the first row consists of the characters "qwertyuiop",
+            * the second row consists of the characters "asdfghjkl", and
+            * the third row consists of the characters "zxcvbnm".
+        
+        Input: words = ["Hello","Alaska","Dad","Peace"]
+        Output: ["Alaska","Dad"]
+
+        Input: words = ["omk"]
+        Output: []
+
+        Input: words = ["adsdf","sfd"]
+        Output: ["adsdf","sfd"]
+        */
+        var findWords = function(words) {
+            let keyboard = [
+                "qwertyuiop",
+                "asdfghjkl",
+                "zxcvbnm"
+            ];
+            
+            let typeableWordsArr = [];
+            
+            for(let i = 0; i < words.length; i++) {
+                let originalWord = words[i];
+                let word = originalWord.toLowerCase();
+                let canTypeWord = true;
+                
+                for(let j = 0; j < keyboard.length; j++) {
+                    let currentKeyboardRow = keyboard[j];
+                    canTypeWord = true;
+                    
+                    // console.log(word, currentKeyboardRow);
+                    
+                    for(let k = 0; k < word.length; k++) {
+                        let char = word[k];
+                        
+                        if(currentKeyboardRow.indexOf(char) === -1) {
+                            canTypeWord = false;
+                            break;
+                        }
+                    }
+                    
+                    if(canTypeWord === true) {
+                        break;
+                    }
+                }
+                
+                if(canTypeWord) {
+                    typeableWordsArr.push(originalWord);
+                }
+            }
+            
+            return typeableWordsArr;
+        };
+
+        // Output: ["Alaska","Dad"]
+        console.log(findWords(["Hello","Alaska","Dad","Peace"]));
+
+        // Output: []
+        console.log(findWords(["omk"]));
+
+        // Output: ["adsdf","sfd"]
+        console.log(findWords(["adsdf","sfd"]));
+    </script>
+</body>
+</html>
