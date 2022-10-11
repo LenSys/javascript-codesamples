@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shortest Completing Word</title>
+</head>
+<body>
+    <script language="javascript">
+        /*
+        Shortest Completing Word
+
+        Given a string licensePlate and an array of strings words, find the shortest 
+        completing word in words.
+
+        A completing word is a word that contains all the letters in licensePlate. 
+        Ignore numbers and spaces in licensePlate, and treat letters as case insensitive. 
+        If a letter appears more than once in licensePlate, then it must appear in the 
+        word the same number of times or more.
+
+        For example, if licensePlate = "aBc 12c", then it contains letters 'a', 'b' 
+        (ignoring case), and 'c' twice. Possible completing words are "abccdef", 
+        "caaacab", and "cbca".
+
+        Return the shortest completing word in words. It is guaranteed an answer exists. 
+        If there are multiple shortest completing words, return the first one that occurs 
+        in words.
+
+        Input: licensePlate = "1s3 PSt", words = ["step","steps","stripe","stepple"]
+        Output: "steps"
+        Explanation: licensePlate contains letters 's', 'p', 's' (ignoring case), and 't'.
+                     "step" contains 't' and 'p', but only contains 1 's'.
+                     "steps" contains 't', 'p', and both 's' characters.
+                     "stripe" is missing an 's'.
+                     "stepple" is missing an 's'.
+                     Since "steps" is the only word containing all the letters, that is 
+                     the answer.
+
+        Input: licensePlate = "1s3 456", words = ["looks","pest","stew","show"]
+        Output: "pest"
+        Explanation: licensePlate only contains the letter 's'. All the words contain 
+                     's', but among these "pest", "stew", and "show" are shortest. 
+                     The answer is "pest" because it is the word that appears earliest 
+                     of the 3.
+        */
+        var shortestCompletingWord = function(licensePlate, words) {
+    
+            let validChars = "abcdefghijklmnopqrstuvwxyz";
+            let plateChars = [];
+            for(let i = 0; i < licensePlate.length; i++) {
+                let char = licensePlate[i].toLowerCase();
+                
+                if(validChars.indexOf(char) !== -1) {
+                    plateChars.push(char);
+                }
+            }
+            
+            console.log(plateChars);
+            let shortestCompletingWord = '';
+            for(let i = 0; i < words.length; i++) {
+                // check if word contains all chars
+                let word = words[i];
+                let originalWord = word;
+                let currentPlateChars = [...plateChars];
+                let isValidWord = true;
+                
+                for(let j = currentPlateChars.length - 1; j >= 0; j--) {
+                    let plateChar = currentPlateChars[j];
+                    let plateCharIndex = word.indexOf(plateChar);
+                    
+                    // console.log(word, plateChar, plateCharIndex);
+                    
+                    if(plateChar !== undefined) {
+                        if(plateCharIndex === -1) {
+                            // current plate char is not in word
+                            isValidWord = false;
+                            break;
+                        } else {
+                            // remove current plate char from array
+                            currentPlateChars.pop();
+                            
+                            word = word.substring(0, plateCharIndex) + word.substring(plateCharIndex + 1, word.length);
+        
+                        }
+                    }
+                }
+                
+                // console.log('---');
+                // console.log(isValidWord, originalWord, currentPlateChars.length);
+                
+                if(isValidWord && currentPlateChars.length === 0) {
+                    // all plate chars used
+                    if((shortestCompletingWord === '') || (originalWord.length < shortestCompletingWord.length)) {
+                        shortestCompletingWord = originalWord;
+                    }
+                }
+                
+                console.log(shortestCompletingWord);
+                console.log('---');
+            }
+            
+            return shortestCompletingWord;
+        };
+
+        // Output: "steps"
+        console.log(shortestCompletingWord("1s3 PSt", ["step","steps","stripe","stepple"]));
+
+        // Output: "pest"
+        console.log(shortestCompletingWord("1s3 456", ["looks","pest","stew","show"]));
+    </script>
+</body>
+</html>
